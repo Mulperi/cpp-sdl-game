@@ -1,50 +1,46 @@
-#include "main.h"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "SDL2/SDL_ttf.h"
+#include <cstdio>
+#include "game.h"
+#include "gui.h"
+#include "engine.h"
 
-Game::Game()
+Game::Game(Engine *e)
 {
     printf("Game constructor called.\n");
-    SDL_Init(SDL_INIT_VIDEO);
-    // Uint32 window_flags = SDL_WINDOW_ALLOW_HIGHDPI;
-    window = NULL;
-    renderer = NULL;
-    window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED,
-                              SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    running = 1;
+    engine = e;
+    running = true;
 }
+
 Game::~Game()
 {
-    printf("Game deconstructor called.\n");
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    printf("Game destructor called.\n");
+    // engine = NULL;
 }
-void Game::processEvents()
-{
-    while (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-        case SDL_QUIT:
-            running = 0;
-            break;
 
-        default:
-            break;
-        }
-    }
-}
 void Game::update()
 {
-    processEvents();
+    running = engine->processEvents();
 }
+
 void Game::render()
 {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    SDL_RenderClear(renderer);
+    // Clear screen.
+    SDL_SetRenderDrawColor(engine->renderer, 0, 0, 255, 255);
+    SDL_RenderClear(engine->renderer);
 
     SDL_Rect rect = {0, 0, 100, 100};
-    SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
-    SDL_RenderFillRect(renderer, &rect);
+    SDL_SetRenderDrawColor(engine->renderer, 255, 0, 255, 255);
+    SDL_RenderFillRect(engine->renderer, &rect);
 
-    SDL_RenderPresent(renderer);
+    // Gui.
+    // gui.render();
+
+    // Render.
+    SDL_RenderPresent(engine->renderer);
+}
+void Game::quit()
+{
+    // engine = nullptr;
 }

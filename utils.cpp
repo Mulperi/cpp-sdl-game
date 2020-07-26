@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdlib.h>
 
 int random_number_get(int min, int max)
 {

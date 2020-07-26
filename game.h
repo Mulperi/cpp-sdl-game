@@ -1,18 +1,28 @@
-#include "SDL2/SDL.h"
+#ifndef GAME_H
+#define GAME_H
+#include <SDL2/SDL.h>
+#include <vector>
+#include "gui.h"
+#include "actor.h"
+#include "engine.h"
 
 class Game
 {
 public:
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_Event event;
-    int running;
+    Engine *engine;
+    bool running;
+    std::vector<Actor> enemies;
+    std::vector<Actor> players;
+    Gui gui;
 
-    Game();
+    Game(Engine *e);
     ~Game();
-    void processEvents();
     void update();
     void render();
     void init();
+    void initGui();
     void quit();
+    void actorCreate();
+    void actorDestroy();
 };
+#endif

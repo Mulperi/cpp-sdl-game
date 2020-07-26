@@ -1,5 +1,8 @@
-#include <iostream>
-#include <time.h>
-#include <stdlib.h>
-#include <SDL2/SDL.h>
-#include "game.h"
+#define GRID_SIZE_Y 30
+#define GRID_SIZE_X 40
+
+enum ACTOR_TYPES
+{
+    ACTOR_TYPE_PLAYER,
+    ACTOR_TYPE_ENEMY
+};
