@@ -1,1 +1,1 @@
-g++ main.cpp game.cpp utils.cpp gridhandler.cpp text.cpp actor.cpp gui.cpp engine.cpp -I/usr/local/include -L/usr/local/lib -lSDL2 -lSDL2_ttf -lSDL2_image -o main
+g++ main.cpp game.cpp gridhandler.cpp text.cpp actor.cpp gui.cpp engine.cpp logger.cpp tile.cpp grid.cpp -I/usr/local/include -L/usr/local/lib -lSDL2 -lSDL2_ttf -lSDL2_image -o main

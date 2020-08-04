@@ -8,5 +8,11 @@ Actor::Actor()
     rect.y = 100;
 }
 Actor::~Actor() {}
-void Actor::render() {}
-void Actor::update() {}
+int Actor::getCenterX()
+{
+    return rect.x + rect.w / 2;
+}
+int Actor::getCenterY()
+{
+    return rect.y + rect.h / 2;
+}
